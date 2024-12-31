@@ -1,0 +1,44 @@
+const express = require("express");
+const nodemailer = require("nodemailer");
+const router = express.Router();
+const authLogic = require("../logic/auth-logic");
+
+
+
+router.post("/formSub", async (request, response) => {
+    try {
+        const fromDetails = request.body;// פרטי הטופס
+        console.log("Form details received:", fromDetails);
+
+        //שמירת הטופס בDB
+        await authLogic.formSubAsync(fromDetails);
+
+        response.status(200).json({ message: "הטופס נשלח ונשמר בהצלחה!" });
+
+    } catch (error) {
+        console.log(error);
+        response.status(500).json({ error: error.message });
+    }
+});
+
+
+
+//לשליפת המייל כדי לשלוח לאדמין
+router.get("/sendAdminEmail", async (request, response) => {
+    try {
+        const emailAdmin = await authLogic.sendAdminEmailAsinc();
+        if (!emailAdmin) {
+            return response.status(404).json({ error: "Admin email not found" });
+
+        }
+        response.status(200).json({ email_admin: emailAdmin });  // מחזירה את המייל כ - JSON באוביקט
+        console.log("Request received at /getAdminEmail");
+
+    }
+    catch (error) {
+        console.log(error);
+        response.status(500).json({ error: error.message });
+
+    }
+});
+module.exports = router;
