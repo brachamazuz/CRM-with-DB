@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+
+
+    <title>page admin</title>
+</head>
+
+<body>
+    <label>כתובת המייל הנוכחית לקבלת הטפסים:</label>
+    <span id="currentEmail"></span>
+    <br>
+    <div class="toggle_bar">
+        <button id="toggle-emailAdmin" class="emailAdmin-toggle">הגדרות מייל</button>
+
+        <div id="Saving_an_email" class="hidden">
+            <label>לאיזו כתובת מייל תרצה שיגיע הטופס? </label>
+            <input type="email" id="emailAdmin" placeholder="אימייל" required>
+            <button type="submit" id="submit-admin">שמור כתובת אימייל</button>
+
+            <div class="email-toggle">
+                <label for="receive-emails">אפשר קבלת מיילים:</label>
+                <input type="checkbox" id="receive-emails" checked>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="downButtons">
+        <button id="print-button">הדפס טבלה</button>
+        <button id="download-pdf">ייצאו טבלה ל - pdf</button>
+        <button id="download-csv">ייצוא ל-CSV</button>
+        <button id="display-from">לעמוד המשתמש</button>
+
+    </div>
+    <div class="dropdown">
+        <select id="sort-options">
+            <option value="default">הצג לפי</option>
+            <option value="date-asc">מהישן לחדש</option>
+            <option value="date-desc">מהחדש לישן</option>
+            <option value="name-asc">לפי א-ב</option>
+        </select>
+    </div>
+    <div class="search-bar">
+        <button id="toggle-search" class="search-toggle">חיפוש וסינון⬇️</button>
+
+        <div id="search-fields" class="search-fields hidden">
+            <label for="name">שם:</label>
+            <input type="text" id="name" name="name" placeholder="חפש שם...">
+
+            <label for="email">אימייל:</label>
+            <input type="text" id="email" name="email" placeholder="חפש אימייל...">
+
+            <label for="start-date">מתאריך:</label>
+            <input type="date" id="start-date">
+
+            <label for="end-date">עד תאריך:</label>
+            <input type="date" id="end-date">
+
+            <button id="search-button">חפש</button>
+            <button id="cancel-button">בטל סינון</button>
+            <span id="totalResult"></span>
+        </div>
+    </div>
+    <table id="admin-table">
+        <thead>
+            <tr>
+                <th>מספר פונה</th>
+                <th>שם מלא</th>
+                <th>אימייל</th>
+                <th>הודעה</th>
+                <th>תאריך הפניה</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
