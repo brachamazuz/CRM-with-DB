@@ -16,6 +16,6 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on ${port}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server is running on http://localhost:${process.env.PORT || 3000}`);
 });
