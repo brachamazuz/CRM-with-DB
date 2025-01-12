@@ -1,9 +1,11 @@
+const apiUrl = "https://backend-2fy4.onrender.com"; // כתובת ה-Backend  ב-Render
+
 //שליפה והצגה של מייל האדמין מה-DB
 document.addEventListener('DOMContentLoaded', async function () {
     const emailDisplay = document.getElementById('currentEmail');
     try {
         // שליפה של כתובת המייל מה-DB
-        const response = await fetch("http://localhost:3000/admin/getAdminEmail", { method: "GET" });
+        const response = await fetch(`${apiUrl}/admin/getAdminEmail`, { method: "GET" });
         if (!response.ok) {
             throw new Error("Filed to fetch admin email");
         }
@@ -30,7 +32,7 @@ if (submitAdminMail) { //רלוונטי רק לעמוד האדמין
         const email_admin = document.getElementById("emailAdmin").value;
 
         try {
-            const response = await fetch("http://localhost:3000/admin/emailAdmin", {
+            const response = await fetch(`${apiUrl}/admin/emailAdmin`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email_admin })
@@ -128,8 +130,8 @@ if (contactForm) { //רלוונטי רק לעמוד המשתמש
         };
         try {
             if (isReceiveEmailsEnabled) {
-                // כאן תוכל לקרוא לפונקציה לשלוח את הטופס
-                const adminResponse = await fetch('http://localhost:3000/auth/sendAdminEmail');  // קריאה לשרת כדי לקבל את המייל של האדמין
+                // קריאה לפונקציה לשלוח את הטופס
+                const adminResponse = await fetch(`${apiUrl}/auth/sendAdminEmail`);  // קריאה לשרת כדי לקבל את המייל של האדמין
                 if (!adminResponse.ok) {
                     throw new Error("Faild to fetch admin email");
                 }
@@ -146,7 +148,7 @@ if (contactForm) { //רלוונטי רק לעמוד המשתמש
 
             }
             //שמירת הטופס ב - DB
-            const response = await fetch("http://localhost:3000/auth/formSub", {// שולח נתונים ל DB
+            const response = await fetch(`${apiUrl}/auth/formSub`, {// שולח נתונים ל DB
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formDetails)
@@ -273,7 +275,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function fetchTableData() {
         try {
             //שליחת הבקשה לקבלת הנתונים
-            const response = await fetch("http://localhost:3000/admin/userForms", { method: "GET" });
+            const response = await fetch(`${apiUrl}/admin/userForms`, { method: "GET" });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
