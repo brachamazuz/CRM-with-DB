@@ -78,7 +78,9 @@ input, textarea {
     border-radius: 5px;
     font-size: 14px;
 }
-
+#display-admin{
+    text-align: left;
+}
 footer{
     background-color: #f1f1f1;
     opacity: 40%;
