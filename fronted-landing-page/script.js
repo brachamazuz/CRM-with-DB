@@ -261,6 +261,13 @@ if (displayFrom) {
         window.open('index.html', "_blank");
     });
 }
+//מעבר לעמוד האדמין
+const displayAdmin = document.getElementById("display-admin");
+if (displayAdmin) {
+    displayFrom.addEventListener("click", () => {
+        window.open('admin.html', "_blank");
+    });
+}
 
 let originalData = [];
 // הצגת כל הטפסים בטבלת בעמוד האדמין
