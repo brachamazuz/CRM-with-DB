@@ -3,7 +3,14 @@ const nodemailer = require("nodemailer");
 const router = express.Router();
 const authLogic = require("../logic/auth-logic");
 
-
+router.get("/test-db", async (req, res) => {
+  try {
+    const result = await logic.testDbConnection(); // קריאה ללוגיקה לבדיקה
+    res.send({ success: true, message: "Database connection successful!", result });
+  } catch (err) {
+    res.status(500).send({ success: false, error: err.message });
+  }
+});
 
 router.post("/formSub", async (request, response) => {
     try {
