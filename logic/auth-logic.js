@@ -1,6 +1,11 @@
 const dal = require("../data/dal");
 const nodemailer = require('nodemailer');
 
+async function testDbConnection() {
+  // קריאה לשאילתה פשוטה לבדוק את החיבור
+  return await dal.executeQueryAsync("SELECT 1");
+}
+
 //שמירת הטופס בDB
 async function formSubAsync(formDetails) {
     try {
@@ -29,5 +34,6 @@ async function sendAdminEmailAsinc() {
 
 module.exports = {
     formSubAsync,
-    sendAdminEmailAsinc
+    sendAdminEmailAsinc,
+    testDbConnection
 };
