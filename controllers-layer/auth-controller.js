@@ -3,9 +3,6 @@ const nodemailer = require("nodemailer");
 const router = express.Router();
 const authLogic = require("../logic/auth-logic");
 
-router.get("/health", (req, res) => {
-  res.send({ status: "OK", message: "Backend is running!" });
-});
 
 router.get("/test-db", async (req, res) => {
   try {
